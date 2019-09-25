@@ -1,0 +1,82 @@
+[{
+    "name": "Huawei P30 Lite",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam veniam mollitia porro facere? Doloribus ea deserunt tempora pariatur, eum distinctio!",
+    "image": "../../../../assets/img/huawei-p30-lite.jpg",
+    "price": 9900,
+    "category": 1,
+    "stock": 1,
+    "favorite": "favorite_border",
+    "cart": "add_shopping_cart"
+}, {
+    "name": "Sony Xperia ZL",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam veniam mollitia porro facere? Doloribus ea deserunt tempora pariatur, eum distinctio!",
+    "image": "../../../../assets/img/xperia-zl.jpg",
+    "price": 5400,
+    "category": 1,
+    "stock": 1,
+    "favorite": "favorite_border",
+    "cart": "add_shopping_cart"
+}, {
+    "name": "Topper Street Nova",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam veniam mollitia porro facere? Doloribus ea deserunt tempora pariatur, eum distinctio!",
+    "image": "../../../../assets/img/topper-street-nova.jpg",
+    "price": 1200,
+    "category": 2,
+    "stock": 1,
+    "favorite": "favorite_border",
+    "cart": "add_shopping_cart"
+}, {
+    "name": "Reebok Astroide Soul 2.0",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam veniam mollitia porro facere? Doloribus ea deserunt tempora pariatur, eum distinctio!",
+    "image": "../../../../assets/img/reebok-astroide-soul-2.0.jpg",
+    "price": 3000,
+    "category": 2,
+    "stock": 1,
+    "favorite": "favorite_border",
+    "cart": "add_shopping_cart"
+}, {
+    "name": "VolksWaguen T-Cross",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam veniam mollitia porro facere? Doloribus ea deserunt tempora pariatur, eum distinctio!",
+    "image": "../../../../assets/img/volkswagen-t-cross.jpg",
+    "price": 540000,
+    "category": 3,
+    "stock": 1,
+    "favorite": "favorite_border",
+    "cart": "add_shopping_cart"
+}, {
+    "name": "Samsung Galaxy S9",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam veniam mollitia porro facere? Doloribus ea deserunt tempora pariatur, eum distinctio!",
+    "image": "../../../../assets/img/galaxy-s9.jpg",
+    "price": 15000,
+    "category": 1,
+    "stock": 1,
+    "favorite": "favorite_border",
+    "cart": "add_shopping_cart"
+}, {
+    "name": "Attack On Titan - Tomo 13",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam veniam mollitia porro facere? Doloribus ea deserunt tempora pariatur, eum distinctio!",
+    "image": "../../../../assets/img/attack-on-titan-tomo-13.jpg",
+    "price": 9900,
+    "category": 4,
+    "stock": 1,
+    "favorite": "favorite_border",
+    "cart": "add_shopping_cart"
+}, {
+    "name": "Moto One",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam veniam mollitia porro facere? Doloribus ea deserunt tempora pariatur, eum distinctio!",
+    "image": "../../../../assets/img/moto-one.jpg",
+    "price": 8700,
+    "category": 1,
+    "stock": 1,
+    "favorite": "favorite_border",
+    "cart": "add_shopping_cart"
+}, {
+    "name": "Pantalón de jean",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam veniam mollitia porro facere? Doloribus ea deserunt tempora pariatur, eum distinctio!",
+    "image": "../../../../assets/img/pantalon-jean.jpg",
+    "price": 1700,
+    "category": 2,
+    "stock": 1,
+    "favorite": "favorite_border",
+    "cart": "add_shopping_cart"
+}]

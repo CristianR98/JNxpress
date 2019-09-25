@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: .7rem;
+    padding: 0 16px;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+}
+
+.mat-card-header-text {
+    width: 100%;
+}
+
+@media screen and (min-width:480px) {
+    .container-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width:720px) {
+    .container-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

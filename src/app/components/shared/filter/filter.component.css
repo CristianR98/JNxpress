@@ -1,0 +1,28 @@
+.expansion {
+    margin: 0 1rem;
+}
+
+.m-a {
+    margin: auto;
+}
+
+.search {
+    width: 50%;
+}
+
+
+/* .sub-accordions {
+    display: flex;
+    flex-direction: column;
+} */
+
+.field {
+    width: 100%;
+}
+
+
+/* @media screen and (min-width:560px) {
+    .sub-accordions {
+        flex-direction: row;
+    }
+} */
