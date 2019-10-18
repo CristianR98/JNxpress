@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { MatButtonModule } from '@angular/material/button'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon'
@@ -12,25 +12,15 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSnackBarModule } from '@angular/material/snack-bar' 
 import { MatExpansionModule } from '@angular/material/expansion'
 import { MatSelectModule } from '@angular/material/select'
- 
+import { MatDividerModule } from '@angular/material/divider'
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatListModule } from '@angular/material/list'
+import { MatTabsModule } from '@angular/material/tabs'
+import { MatTableModule } from '@angular/material/table'
+
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    MatGridListModule,
-    MatMenuModule,
-    MatDialogModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSnackBarModule,
-    MatExpansionModule,
-    MatSelectModule
-  ],
   exports: [
     MatButtonModule,
     MatToolbarModule,
@@ -43,7 +33,12 @@ import { MatSelectModule } from '@angular/material/select'
     MatFormFieldModule,
     MatSnackBarModule,
     MatExpansionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTabsModule,
+    MatTableModule
   ]
 })
 export class MaterialModule { }
