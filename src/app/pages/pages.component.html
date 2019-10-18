@@ -1,0 +1,14 @@
+<mat-sidenav-container class="container">
+
+    <mat-sidenav class="side" #sidenav [mode]="'push'" [position]="'end'" [fixedInViewport]=true>
+        <app-sidebar [sidenav]="sidenav"></app-sidebar>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <app-navbar class="navbar" [sidenav]="sidenav"></app-navbar>
+        <div class="router-outlet">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

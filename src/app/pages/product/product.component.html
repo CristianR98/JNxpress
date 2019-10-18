@@ -1,0 +1,51 @@
+<div class="container" *ngIf="product">
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-title>
+                <h1 class="title">{{product.name}}</h1>
+            </mat-card-title>
+        </mat-card-header>
+        <img class="img mb" [src]="product.image" [alt]="product.name">
+        <mat-card-content>
+            <h2 class="mb title-content">Descripción:</h2>
+            <p class="mb description">
+                {{product.description}}
+            </p>
+            <small class="stock mb">Stock: {{product.stock}}</small>
+            <p *ngIf="!userService.session"><small>*Debes iniciar sesión para comprar.</small></p>
+        </mat-card-content>
+        <mat-card-actions *ngIf="userService.session">
+            <button mat-raised-button color="primary" (click)="openDialog(6)">Comprar</button>
+            <button mat-raised-button color="primary">Añadir a favoritos</button>
+        </mat-card-actions>
+        <mat-card-actions *ngIf="!userService.session">
+            <button mat-raised-button color="primary" (click)="openDialog(1)">Iniciar Sesión</button>
+            <button mat-raised-button color="primary" (click)="openDialog(2)">Registrarse</button>
+        </mat-card-actions>
+    </mat-card>
+    <mat-card class="card-info">
+        <mat-card-header>
+        </mat-card-header>
+        <div class="panel-vendedor panel">
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                    Información del vendedor
+                </mat-expansion-panel-header>
+                <article *ngIf="product.user">
+                    <h1>{{product.user.username}}</h1>
+                    <p>Ventas: {{product.user.sales}}</p>
+                    <p>Valoración: {{product.user.appreciation}}</p>
+                    <a [routerLink]="['/user',product.user.id]">Ir a perfil</a>
+                </article>
+            </mat-expansion-panel>
+        </div>
+        <div class="panel-reviews panel">
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                    Reviews
+                </mat-expansion-panel-header>
+                <app-reviews [reviews]="review" *ngFor="let review of product.reviews"></app-reviews>
+            </mat-expansion-panel>
+        </div>
+    </mat-card>
+</div>
