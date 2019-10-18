@@ -1,0 +1,22 @@
+<mat-card *ngIf="user" class="card">
+    <mat-card-header class="title-card">
+        {{user.username}}
+    </mat-card-header>
+    <mat-card-content>
+        <article class="container-info">
+            <section class="relevant-info">
+                <p class="__relevant" *ngIf="user.description">{{user.description}}</p>
+                <p class="__relevant" *ngIf="!user.description">Sin descripción</p>
+                <app-appreciation [appreciation]="user.appreciation"></app-appreciation>
+            </section>
+            <section class="content-card">
+                <p class="other-info">Contacto: {{user.email}}</p>
+                <p class="other-info">Ventas: {{user.sales}}</p>
+                <p class="other-info">Compras: {{user.purchases}}</p>
+            </section>
+        </article>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="openDialog(4)">Reseñar</button>
+    </mat-card-actions>
+</mat-card>

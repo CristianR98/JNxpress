@@ -1,0 +1,34 @@
+.article {
+    margin-bottom: 1rem;
+}
+
+.mb {
+    margin-bottom: .3rem;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+}
+
+.username {
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+
+.product {
+    margin-bottom: .7rem;
+}
+
+.content {
+    font-style: italic;
+    margin-bottom: .7rem;
+}
+
+.date {
+    font-size: .8rem;
+}
+
+.divider {
+    position: relative !important;
+}

@@ -1,0 +1,56 @@
+.container-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.other-info {
+    margin-bottom: .3rem;
+}
+
+.relevant-info {
+    margin: 0 1.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.__relevant {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: .5rem;
+}
+
+.content-card {
+    font-size: .9rem;
+}
+
+@media screen and (min-width:720px) {
+    .title-card {
+        font-size: 2rem;
+    }
+    .relevant-info {
+        font-size: 1.2rem;
+    }
+    .content-card {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .title-card {
+        margin-bottom: 1.5rem;
+    }
+    .container-info {
+        flex-direction: row;
+    }
+    .relevant-info {
+        order: 1;
+        flex: 2;
+    }
+    .other-info {
+        margin-bottom: 1rem;
+    }
+    .content-card {
+        order: 0;
+        flex: 1
+    }
+}

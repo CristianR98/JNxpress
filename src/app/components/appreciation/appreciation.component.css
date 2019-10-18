@@ -1,0 +1,11 @@
+.container {
+    width: fit-content;
+    margin: auto;
+}
+
+@media screen and (min-width:720px) {
+    .star {
+        font-size: 2rem;
+        margin-right: .7rem;
+    }
+}

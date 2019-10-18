@@ -1,0 +1,19 @@
+<article class="container">
+    <mat-card *ngIf="reviews">
+        <mat-card-header class="title-card">
+            Reseñas de {{type}}:
+        </mat-card-header>
+        <mat-card-content class="content-card">
+            <article class="article" *ngFor="let review of reviews">
+                <header class="review-header">
+                    <h1 class="username">{{review.username}}:</h1>
+                    <app-appreciation class="points" [appreciation]="review.points"></app-appreciation>
+                </header>
+                <h4 class="product" *ngIf="review.product" [routerLink]="review.productRoute">{{review.product}}</h4>
+                <p class="content">"{{review.content}}"</p>
+                <p class="mb date">{{review.date | date}}</p>
+                <mat-divider class="divider"></mat-divider>
+            </article>
+        </mat-card-content>
+    </mat-card>
+</article>

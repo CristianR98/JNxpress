@@ -1,0 +1,26 @@
+<mat-toolbar class="toolbar" color="primary">
+    <mat-toolbar-row class="row">
+        <h1 class="logo" routerLink="home/0">JNxpress</h1>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="row">
+        <nav class="main-navbar-container">
+            <ul class="menu-navbar" id="menuNavbar">
+                <li class="list-item" routerLink="results">
+                    <button mat-icon-button>
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </li>
+                <li class="list-item" *ngIf="userService.session">
+                    <button mat-icon-button>
+                        <mat-icon>notifications</mat-icon>
+                    </button>
+                </li>
+                <li class="list-item">
+                    <button mat-icon-button (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                </li>
+            </ul>
+        </nav>
+    </mat-toolbar-row>
+</mat-toolbar>

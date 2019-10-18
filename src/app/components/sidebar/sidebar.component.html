@@ -1,0 +1,68 @@
+<div class="sidebar">
+    <ul>
+        <li *ngIf="userService.session">
+            <mat-toolbar color="accent">Perfil</mat-toolbar>
+            <mat-nav-list>
+                <mat-list-item>
+                    <div class="navigation-link">
+                        <a>Ver mi perfil</a>
+                        <mat-icon>person</mat-icon>
+                    </div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div class="navigation-link">
+                        <a>Ver favoritos</a>
+                        <mat-icon>favorite</mat-icon>
+                    </div>
+                </mat-list-item>
+                <mat-list-item (click)="openDialog(3)">
+                    <div class="navigation-link">
+                        <a>Publicar producto</a>
+                        <mat-icon>post_add</mat-icon>
+                    </div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div class="navigation-link" (click)="openDialog(5)">
+                        <a>Agregar saldo</a>
+                        <mat-icon>account_balance_wallet</mat-icon>
+                    </div>
+                </mat-list-item>
+            </mat-nav-list>
+        </li>
+        <li>
+            <mat-toolbar color="accent">Acciones</mat-toolbar>
+            <mat-nav-list>
+                <mat-list-item (click)="openDialog(1)" *ngIf="!userService.session">
+                    <div class="navigation-link">
+                        <a>Iniciar sesión</a>
+                        <mat-icon>input</mat-icon>
+                    </div>
+                </mat-list-item>
+                <mat-list-item (click)="openDialog(2)" *ngIf="!userService.session">
+                    <div class="navigation-link">
+                        <a>Registrarse</a>
+                        <mat-icon>person_add</mat-icon>
+                    </div>
+                </mat-list-item>
+                <mat-list-item (click)="openDialog(2)" *ngIf="userService.session">
+                    <div class="navigation-link">
+                        <a>Configuración</a>
+                        <mat-icon>build</mat-icon>
+                    </div>
+                </mat-list-item>
+                <mat-list-item (click)="openAlert(1)" *ngIf="userService.session">
+                    <div class="navigation-link">
+                        <a>Cerrar sesión</a>
+                        <mat-icon>exit_to_app</mat-icon>
+                    </div>
+                </mat-list-item>
+                <mat-list-item>
+                    <div class="navigation-link">
+                        <a>Sobre JNxpress</a>
+                        <mat-icon>info</mat-icon>
+                    </div>
+                </mat-list-item>
+            </mat-nav-list>
+        </li>
+    </ul>
+</div>

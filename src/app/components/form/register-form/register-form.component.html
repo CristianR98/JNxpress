@@ -1,0 +1,71 @@
+<div mat-dialog-content>
+
+    <form action="" [formGroup]="formulario">
+
+        <div class="field">
+            <mat-form-field class="field">
+                <input matInput placeholder="Nombre de Usuario" formControlName="username" [errorStateMatcher]="matcher" cdkFocusInitial>
+                <mat-error *ngIf="username.getError('required')">
+                    Este campo es requerido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="field">
+            <mat-form-field class="field">
+                <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="email.getError('required')">
+                    Este campo es requerido.
+                </mat-error>
+                <mat-error *ngIf="email.getError('email')">
+                    Debe ingresar un email valido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="field">
+            <mat-form-field class="field">
+                <input matInput placeholder="Password" formControlName="password" [errorStateMatcher]="matcher" [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hidpassword'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="password.getError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="field">
+            <mat-form-field class="field">
+                <input matInput type="number" placeholder="Saldo" formControlName="balance" [errorStateMatcher]="matcher">
+                <span matPrefix>$&nbsp;</span>
+                <mat-error *ngIf="balance.getError('required')">
+                    Debe agregar un saldo inicial.
+                </mat-error>
+                <mat-error *ngIf="balance.getError('min')">
+                    Debes ingresar un minimo de $5.
+                </mat-error>
+                <mat-error *ngIf="balance.getError('max')">
+                    No cifras de mas de 6 dígitos.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="field">
+
+            <mat-form-field>
+                <mat-label>Intereses:</mat-label>
+                <mat-select multiple formControlName="interest">
+                    <mat-option *ngFor="let item of interestsList;let i = index" [value]="++i">{{item}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+
+    </form>
+
+</div>
+<div mat-dialog-actions>
+    <button [disabled]="!formulario.valid" class="buttons" mat-raised-button color="primary" (click)="register()">Registrarse</button>
+    <button class="buttons" mat-raised-button [mat-dialog-close]>Cancelar</button>
+</div>
