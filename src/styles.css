@@ -18,3 +18,48 @@ body {
 .router-outlet {
     padding-top: 4rem;
 }
+
+.title-card {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.title-card .mat-title-header-text {
+    padding: 0;
+}
+
+.field {
+    width: 100%;
+}
+
+@media screen and (min-width:720px) {
+    .title-card {
+        font-size: 1.5rem;
+    }
+    .relevant-info {
+        font-size: 1.2rem;
+    }
+    .content-card {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .title-card {
+        margin-bottom: 1.5rem;
+    }
+    .container-info {
+        flex-direction: row;
+    }
+    .relevant-info {
+        order: 1;
+        flex: 2;
+    }
+    .other-info {
+        margin-bottom: 1rem;
+    }
+    .content-card {
+        order: 0;
+        flex: 1
+    }
+}
