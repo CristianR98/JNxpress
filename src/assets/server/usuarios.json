@@ -1,0 +1,61 @@
+[{
+    "id": 1,
+    "username": "JNeger",
+    "email": "c.nahu.roman@gmail.com",
+    "password": "qwerty123",
+    "saldo": 1000000,
+    "sales": 300,
+    "valoracion": 400,
+    "premium": true,
+    "admin": true
+}, {
+    "id": 2,
+    "username": "Maru-chan",
+    "email": "maru@gmail.com",
+    "password": "qwerty123",
+    "saldo": 500000,
+    "sales": 300,
+    "valoracion": 400,
+    "premium": true,
+    "admin": false
+}, {
+    "id": 3,
+    "username": "Cristina Roman",
+    "email": "crisdenawa@gmail.com",
+    "password": "qwerty123",
+    "saldo": 400,
+    "sales": 300,
+    "valoracion": 400,
+    "premium": true,
+    "admin": false
+}, {
+    "id": 4,
+    "username": "Chicha Morada",
+    "email": "chichiña@gmail.com",
+    "password": "qwerty123",
+    "saldo": 400,
+    "sales": 300,
+    "valoracion": 400,
+    "premium": true,
+    "admin": false
+}, {
+    "id": 5,
+    "username": "Wanda",
+    "email": "wanda@gmail.com",
+    "password": "qwerty123",
+    "saldo": 8000,
+    "sales": 300,
+    "valoracion": 400,
+    "premium": false,
+    "admin": false
+}, {
+    "id": 6,
+    "username": "DSRoman",
+    "email": "denise.roman@gmail.com",
+    "password": "qwerty123",
+    "saldo": 400,
+    "sales": 300,
+    "valoracion": 400,
+    "premium": false,
+    "admin": false
+}]
