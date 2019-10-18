@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../class/product.class';
 import { HttpService } from './http.service';
 import { Observable, Subject } from 'rxjs';
+import { Review } from '../class/review.class';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +13,33 @@ export class ProductsService {
   filtersProducts:Product[]
   private subjectRenderProducts: Subject<Product[]> = new Subject()
   renderProducts$:Observable<Product[]> = this.subjectRenderProducts.asObservable()
+  private subjectProducts: Subject<Product[]> = new Subject()
+  obsProducts:Observable<Product[]> = this.subjectProducts.asObservable()
+
   private lastTermino:string
   private lastCategory:number
   private filteredCaterogies:boolean = false
   private filteredSearch:boolean = false
 
+
   constructor(
     private httpService:HttpService
   ) {
+    this.getAllProducts()
+  }
+
+  private getAllProducts() {
     this.httpService.getAllProducts().subscribe(products => {
       this.allProducts = products
       this.filtersProducts = products
       this.subjectRenderProducts.next(products)
+      this.subjectProducts.next(products)
     })
+  }
+
+
+  update() {
+    this.getAllProducts()
   }
 
   setProductsForCategory(category:number,products = this.allProducts):Product[] {
@@ -73,5 +88,9 @@ export class ProductsService {
     this.subjectRenderProducts.next(this.filtersProducts)
   }
 
+
+  public getProduct(index:number):Product {
+    return this.allProducts.find( product => product.id == index)
+  }
 
 }
