@@ -1,18 +1,21 @@
+import { Product } from './product.class'
+
 export class User {
 
-    id:number
+    readonly id:number
     username:string
     email:string
-    saldo:number
-    premium:boolean
-    admin:boolean
+    sales:number
+    purchases:number
+    appreciation:number
+    description?:string
+    saldo?:number
 
     constructor(user) {
         this.id = user.id
         this.username = user.username
         this.email = user.email
         this.saldo = user.saldo
-        this.premium = user.premium
-        this.admin = user.admin
+        this.sales = user.sales
     }
 }
