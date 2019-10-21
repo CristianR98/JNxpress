@@ -32,7 +32,26 @@ body {
     width: 100%;
 }
 
+.cursor {
+    cursor: pointer;
+}
+
+
+/* Responsive page of product and user */
+
+.component-container {
+    padding: .5rem;
+    display: grid;
+    grid-gap: .5rem;
+}
+
 @media screen and (min-width:720px) {
+    .component-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .principal {
+        grid-area: 1 / 1 / 2 / 3;
+    }
     .title-card {
         font-size: 1.5rem;
     }
@@ -45,6 +64,19 @@ body {
 }
 
 @media screen and (min-width:1024px) {
+    .component-container {
+        grid-template-columns: repeat(3, auto);
+        grid-template-rows: repeat(3, auto);
+    }
+    .user {
+        grid-template-columns: repeat(2, auto);
+    }
+    .principal {
+        grid-area: 1 / 1 / 4 / 3;
+    }
+    .user-card {
+        grid-area: 1 / 1 / 2 / 3;
+    }
     .title-card {
         margin-bottom: 1.5rem;
     }
