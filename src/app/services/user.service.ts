@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserResponse, $Response } from '../class/$response';
+import { Respuesta } from '../class/respuesta.class';
 import { User } from '../class/user.class';
 
 @Injectable({
@@ -22,28 +22,28 @@ export class UserService {
   ) {
     this.verifSession().subscribe(resp => {
       if (resp.status == 200) {
-        this.user = resp.user
+        this.user = resp.content
         this.session = true
       }
     })
   }
 
 
-  verifSession():Observable<UserResponse>{
-    return this.http.get<UserResponse>('http://localhost:8080/jnxpress/verifSession')
+  verifSession():Observable<Respuesta<User>>{
+    return this.http.get<Respuesta<User>>('http://localhost:8080/jnxpress/verifSession')
   }
 
 
-  login(email:string, password:string):Observable<UserResponse> {
+  login(email:string, password:string):Observable<Respuesta<User>> {
     return this.http
-      .get<UserResponse>(`http://localhost:8080/jnxpress/login?email=${email}&password=${password}`)
+      .get<Respuesta<User>>(`http://localhost:8080/jnxpress/login?email=${email}&password=${password}`)
       
   }
 
 
-  logout():Observable<$Response> {
+  logout():Observable<Respuesta<string>> {
     return this.http
-      .get<$Response>(`http://localhost:8080/jnxpress/logout`)
+      .get<Respuesta<string>>(`http://localhost:8080/jnxpress/logout`)
   }
 
 }

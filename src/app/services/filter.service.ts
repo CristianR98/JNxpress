@@ -13,32 +13,23 @@ export class FilterService {
   private subjectFilters = new Subject<Busqueda>()
   public filters$ = this.subjectFilters.asObservable()
   private route:string[] 
+  set setRoute(ruta:string[]) {
+    this.route = ruta
+  }
 
   constructor(
     private router:Router,
     private http:HttpService
   ) {
-    // setInterval(()=>{
-    //   this.subjectFilters.next(this.busqueda)
-    // },1000)
   }
 
-  newTerm(term:string) {
-    this.busqueda.term = term
+  updateFilter(busqueda:Busqueda) {
+    this.voids(busqueda)
+    this.busqueda = busqueda
     this.navigate()
-  }
-
-  newCategory(category:number) {
-    this.busqueda.category = category
-    this.navigate()
-  }
-
-  private actualizarRoute() {
-    this.route = ['/results']
   }
 
   private navigate() {
-    this.actualizarRoute()
     this.router.navigate(this.route,{queryParams :this.busqueda})
   }
   
@@ -47,11 +38,16 @@ export class FilterService {
     setTimeout(() => {
       this.subjectFilters.next(this.busqueda)
     }, 0);
-    console.log(this.busqueda)
   }
 
   getProducts() {
     return this.http.getAllProducts()
   }
 
+  private voids(values):void{
+    values.term = values.term == undefined?'':values.term
+    values.user = values.user == undefined?'':values.user
+    values.category = isNaN(values.category)?0:values.category
+    values.condition = isNaN(values.condition)?0:values.condition
+  }
 }
