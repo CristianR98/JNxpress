@@ -1,10 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from 'src/app/class/product.class';
-import { HttpService } from 'src/app/services/http.service';
 import { Review } from 'src/app/class/review.class';
-import { MatExpansionPanel } from '@angular/material/expansion';
 import { UserService } from 'src/app/services/user.service';
 import { DialogService } from 'src/app/services/dialog.service';
 import { FormComponent } from 'src/app/components/form/form.component';
@@ -16,7 +14,27 @@ import { FormComponent } from 'src/app/components/form/form.component';
 })
 export class ProductComponent implements OnInit {
 
-  // @ViewChild(MatExpansionPanel,{static:true}) panel
+  reviews:Review[] = [
+    {
+      id: 1,
+      content: 'muy buen vendedor!',
+      username: 'Cristian',
+      points: 5,
+      date: new Date()
+    },{
+      id: 2,
+      content: 'Muy malo!',
+      username: 'Maru-chan',
+      points: 1,
+      date: new Date()
+    },{
+      id: 2,
+      content: 'Buen servicio',
+      username: 'Cristina Roman',
+      points: 3,
+      date: new Date()
+    }
+  ]
 
   product:Product
   id:number

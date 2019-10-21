@@ -1,12 +1,19 @@
-<mat-tab-group mat-stretch-tabs dynamicHeight>
-    <mat-tab label="Perfil">
-        <article class="container">
-            <app-user-card [user]="user" class="user-card"></app-user-card>
+<article class="component-container user">
+    <app-user-card [user]="user" [perfil]="perfil" class="user-card principal"></app-user-card>
+    <div class="panel-vendedor panel">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                Reseñas como vendedor.
+            </mat-expansion-panel-header>
             <app-reviews type="usuarios" [reviews]="reviewsUser"></app-reviews>
+        </mat-expansion-panel>
+    </div>
+    <div class="panel-reviews panel">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                Reseñas de productos.
+            </mat-expansion-panel-header>
             <app-reviews type="productos" [reviews]="reviewsProduct"></app-reviews>
-        </article>
-    </mat-tab>
-    <mat-tab label="Productos" class="tab">
-        <app-list-products></app-list-products>
-    </mat-tab>
-</mat-tab-group>
+        </mat-expansion-panel>
+    </div>
+</article>

@@ -69,15 +69,20 @@ export class UserComponent implements OnInit {
     }
   ]
 
+  perfil:boolean = false
 
   constructor(
-    private router:Router,
     private activatedRoute:ActivatedRoute
   ) {}
 
   ngOnInit() {
-    console.log(this.activatedRoute.paramMap)
-    console.log(this.activatedRoute.data)
+    this.activatedRoute.data.subscribe( (data:any) => {
+
+      if (data.perfil) {
+        this.perfil = true
+      }
+
+    })
   }
 
 }

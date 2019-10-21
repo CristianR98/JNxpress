@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ConfigurationComponent } from './configuration/configuration.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
@@ -13,7 +12,6 @@ import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
-    ConfigurationComponent,
     FavoritesComponent,
     HomeComponent,
     ProductComponent,
