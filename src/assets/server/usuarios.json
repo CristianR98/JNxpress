@@ -5,7 +5,7 @@
     "password": "qwerty123",
     "saldo": 1000000,
     "sales": 300,
-    "valoracion": 400,
+    "appreciation": 4,
     "premium": true,
     "admin": true
 }, {
@@ -15,7 +15,7 @@
     "password": "qwerty123",
     "saldo": 500000,
     "sales": 300,
-    "valoracion": 400,
+    "appreciation": 5,
     "premium": true,
     "admin": false
 }, {
@@ -25,7 +25,7 @@
     "password": "qwerty123",
     "saldo": 400,
     "sales": 300,
-    "valoracion": 400,
+    "appreciation": 5,
     "premium": true,
     "admin": false
 }, {
@@ -35,7 +35,7 @@
     "password": "qwerty123",
     "saldo": 400,
     "sales": 300,
-    "valoracion": 400,
+    "appreciation": 5,
     "premium": true,
     "admin": false
 }, {
@@ -45,7 +45,7 @@
     "password": "qwerty123",
     "saldo": 8000,
     "sales": 300,
-    "valoracion": 400,
+    "appreciation": 4,
     "premium": false,
     "admin": false
 }, {
@@ -55,7 +55,7 @@
     "password": "qwerty123",
     "saldo": 400,
     "sales": 300,
-    "valoracion": 400,
+    "appreciation": 4,
     "premium": false,
     "admin": false
 }]
