@@ -46,6 +46,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   iniciarSesion():void {
     if (this.formulario.valid) {
+      this.userService.session = true
+      this.dialogService.closeDialog()
       this.subscription = this.userService.login(this.email.value,this.password.value)
         .subscribe(resp => {
           if (resp.status == 200) {

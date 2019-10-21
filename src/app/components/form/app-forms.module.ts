@@ -16,6 +16,9 @@ import { CanvasService } from './services/canvas.service';
 import { ReviewFormComponent } from './review-form/review-form.component';
 import { SaleFormComponent } from './sale-form/sale-form.component';
 import { AddBalanceFormComponent } from './add-balance-form/add-balance-form.component';
+import { EditInfoFormComponent } from './edit-info-form/edit-info-form.component';
+import { EditInterestFormComponent } from './edit-interest-form/edit-interest-form.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { AddBalanceFormComponent } from './add-balance-form/add-balance-form.com
     CanvasComponent,
     ReviewFormComponent,
     SaleFormComponent,
-    AddBalanceFormComponent
+    AddBalanceFormComponent,
+    EditInfoFormComponent,
+    EditInterestFormComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
