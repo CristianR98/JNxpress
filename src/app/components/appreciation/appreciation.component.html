@@ -1,3 +1,3 @@
-<div class="container">
-    <mat-icon color="primary" class="star" *ngFor="let star of stars">{{star}}</mat-icon>
+<div [ngClass]="{'container': true, 'inline': inline }">
+    <mat-icon color="primary" *ngFor="let star of stars">{{star}}</mat-icon>
 </div>

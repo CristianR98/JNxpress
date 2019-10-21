@@ -3,6 +3,10 @@
     margin: auto;
 }
 
+.inline {
+    margin: .5rem 0;
+}
+
 @media screen and (min-width:720px) {
     .star {
         font-size: 2rem;

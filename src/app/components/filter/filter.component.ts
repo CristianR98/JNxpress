@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
-import { ProductsService } from 'src/app/services/products.service';
-import { Router } from '@angular/router';
 import { FilterService } from 'src/app/services/filter.service';
 import { Busqueda } from 'src/app/class/busqueda.class';
-import { pipe } from 'rxjs';
-import { retry } from 'rxjs/operators';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-filter',
@@ -15,33 +12,56 @@ import { retry } from 'rxjs/operators';
 export class FilterComponent implements OnInit {
 
   categories:any[]
+  conditions:any[] = [
+    {
+      value: 0,
+      name: 'Ambas'
+    },
+    {
+      value: 1,
+      name: 'Nuevo'
+    },
+    {
+      value: 2,
+      name: 'Usado'
+    }
+  ]
   filters:Busqueda = new Busqueda()
   
+  term:FormControl = new FormControl('')
+  user:FormControl = new FormControl('')
+  category:FormControl = new FormControl(0)
+  condition:FormControl = new FormControl(0)
+
+  form:FormGroup
 
   constructor(
     private httpServices:HttpService,
-    private productsService:ProductsService,
     public filterService:FilterService
   ) { }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      term: this.term,
+      user: this.user,
+      category: this.category,
+      condition: this.condition
+    })
+
     this.filterService.filters$.subscribe(filters => {
       this.filters = filters
-      console.log(this.filters.category)
+      this.term.setValue(filters.term)
+      this.user.setValue(filters.user)
+      this.category.setValue(filters.category)
+      this.condition.setValue(filters.condition)
     })
     this.httpServices.getCategories().subscribe(categories => {
       this.categories = categories
     })
   }
 
-  sendCategory() {
-    this.filterService.newCategory(this.filters.category)
-    this.productsService.setProductsForCategory(this.filters.category)
-  }
-
-  sendSearch(){
-    this.filterService.newTerm(this.filters.term)
-    this.productsService.setProductsForSearch(this.filters.term)
+  updateFilter():void {
+    this.filterService.updateFilter(this.form.value)
   }
 
 }

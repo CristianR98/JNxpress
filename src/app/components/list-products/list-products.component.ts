@@ -12,6 +12,8 @@ export class ListProductsComponent implements OnInit {
   @Input() title:string
   snackCicle:boolean = true
 
+  @Input() ifUser:boolean
+
   products:Product[] = []
 
   constructor(

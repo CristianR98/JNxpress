@@ -12,6 +12,7 @@ import { FormComponent } from '../form/form.component';
 export class UserCardComponent implements OnInit {
 
   @Input() user:User
+  @Input() perfil:boolean
 
   constructor(
     private dialogService:DialogService

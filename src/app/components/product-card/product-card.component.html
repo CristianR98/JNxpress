@@ -1,6 +1,6 @@
 <mat-card class="card" color="primary">
     <div class="header-card">
-        <mat-card-title class="title">{{product.name}}</mat-card-title>
+        <mat-card-title class="title cursor" (click)="irAProduct()">{{product.name}}</mat-card-title>
         <mat-card-subtitle class="subtitle" *ngIf="product.user">Por {{product.user.username}}</mat-card-subtitle>
     </div>
     <div class="img-container">
@@ -8,8 +8,13 @@
     </div>
     <mat-card-content class="price">{{product.price | currency}}</mat-card-content>
     <mat-card-actions class="actions">
-        <button mat-icon-button color="primary" (click)="addFavorite()" *ngIf="userService.session"><mat-icon>{{product.favorite}}</mat-icon></button>
-        <button mat-icon-button color="primary" (click)="addOrRemoveCart()" *ngIf="userService.session"><mat-icon>{{product.cart}}</mat-icon></button>
+
+        <button *ngIf="ifUser" mat-raised-button color="primary">Editar</button>
+        <button *ngIf="ifUser" mat-raised-button color="warn">Eliminar</button>
+
+        <button mat-icon-button color="primary" (click)="addOrRemFavorite(product)" *ngIf="userService.session && !ifUser"><mat-icon>{{product.favorite}}</mat-icon></button>
+
+
         <button mat-button (click)="irAProduct()">Ver mas...</button>
     </mat-card-actions>
 </mat-card>

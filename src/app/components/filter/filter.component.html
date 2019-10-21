@@ -9,37 +9,45 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <div class="sub-accordions">
+        <form class="sub-accordions" [formGroup]="form">
 
 
-            <mat-form-field appearance="standard" class="field">
-                <mat-label class="search">Buscar:</mat-label>
-                <input matInput [(ngModel)]="filters.term" (input)="sendSearch()" class="search">
+            <mat-form-field class="field">
+                <mat-label class="search">Buscar</mat-label>
+                <input matInput formControlName="term" class="search" (input)="updateFilter()">
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
 
 
-            <mat-accordion>
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Por categoria
-                        </mat-panel-title>
-                        <mat-panel-description>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <mat-form-field class="field">
-                        <mat-label>Categoria</mat-label>
-                        <mat-select [(value)]="filters.category" (valueChange)="sendCategory()">
-                            <mat-option value=0>None</mat-option>
-                            <mat-option *ngFor="let category of categories" [value]="category.id">
-                                {{category.name}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </mat-expansion-panel>
-            </mat-accordion>
-        </div>
+            <mat-form-field class="field">
+                <mat-label>Usuario</mat-label>
+                <input matInput formControlName="user" (input)="updateFilter()">
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+
+            <mat-form-field class="field">
+                <mat-label>Categoría</mat-label>
+                <mat-select formControlName="category" (selectionChange)="updateFilter()">
+                    <mat-option *ngFor="let category of categories" [value]="category.id">
+                        {{category.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field class="field">
+                <mat-label>Condición</mat-label>
+                <mat-select formControlName="condition" (selectionChange)="updateFilter()">
+                    <mat-option *ngFor="let conditionSelect of conditions" [value]="conditionSelect.value">
+                        {{conditionSelect.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+        </form>
+
     </mat-expansion-panel>
 
 

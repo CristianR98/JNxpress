@@ -43,7 +43,8 @@ import { AppreciationComponent } from './appreciation/appreciation.component';
     UserCardComponent,
     SidebarComponent,
     ReviewsComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    AppreciationComponent
   ],
   imports: [
     CommonModule,

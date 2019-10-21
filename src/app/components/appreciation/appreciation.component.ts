@@ -10,6 +10,8 @@ export class AppreciationComponent implements OnInit, OnChanges {
   stars:string[] = []
   @Input() appreciation:number
 
+  @Input() inline:boolean
+
   constructor() {}
 
   ngOnInit() {

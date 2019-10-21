@@ -24,12 +24,16 @@ export class SidebarComponent implements OnInit {
   }
 
   openDialog(type:number) {
-    this.sidenav.close()
+    this.closeSidebar()
     this.dialogService.openDialog(FormComponent,type)
   }
 
   openAlert(type:number) {
-    this.sidenav.close()
+    this.closeSidebar()
     this.dialogService.openDialog(AlertComponent,type)
+  }
+  
+  protected closeSidebar() {
+    this.sidenav.close()
   }
 }
