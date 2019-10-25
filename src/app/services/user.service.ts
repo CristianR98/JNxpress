@@ -16,6 +16,7 @@ export class UserService {
     return this.user
   }
 
+  backEnd:string = 'http://localhost:8080/jnxpress/'
 
   constructor(
     private http:HttpClient
@@ -28,22 +29,35 @@ export class UserService {
     })
   }
 
-
   verifSession():Observable<Respuesta<User>>{
-    return this.http.get<Respuesta<User>>('http://localhost:8080/jnxpress/verifSession')
+    let url = this.backEnd + 'checkSession'
+    return this.http.get<Respuesta<User>>(url)
   }
-
 
   login(email:string, password:string):Observable<Respuesta<User>> {
-    return this.http
-      .get<Respuesta<User>>(`http://localhost:8080/jnxpress/login?email=${email}&password=${password}`)
-      
+    let url = `${this.backEnd}login?email=${email}&password=${password}`
+    return this.http.get<Respuesta<User>>(url)
   }
 
+  register(user:User):Observable<Respuesta<string>> {
+    let url = this.backEnd + 'register'
+    return this.http.post<Respuesta<string>>(url, JSON.stringify(user))
+  }
 
   logout():Observable<Respuesta<string>> {
-    return this.http
-      .get<Respuesta<string>>(`http://localhost:8080/jnxpress/logout`)
+    let url = this.backEnd + 'logout'
+    return this.http.get<Respuesta<string>>(url)
+  }
+
+  putInfo(userInfo:User):Observable<Respuesta<string>> {
+    let url = this.backEnd + 'putUserInfo'
+    return this.http.put<Respuesta<string>>(url,JSON.stringify(userInfo))
+  }
+
+  putPassword(actualPassword:string, newPassword:string):Observable<Respuesta<string>> {
+    let url:string = this.backEnd + 'putPassword',
+      body:string = `actualPassword=${actualPassword}&newPassword=${newPassword}`
+      return this.http.put<Respuesta<string>>(url,body)
   }
 
 }

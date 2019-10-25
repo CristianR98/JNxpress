@@ -13,8 +13,12 @@ export class UserComponent implements OnInit {
   user:User = {
     username: 'JNxpress',
     email: 'jnx@jnexpress.com',
-    saldo: 1000,
+    balance: 1000,
     description: 'Fundador de Jnxpress, vendedor desde hace 20 años.',
+    interests:[
+      {id:1, name:'Nosee'}
+    ],
+    password:'',
     id: 1,
     sales: 23,
     purchases: 24,

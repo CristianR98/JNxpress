@@ -8,7 +8,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class EditInterestFormComponent implements OnInit {
 
-  interest:FormControl = new ForamControl('',Validators.required)
+  interest:FormControl = new FormControl('',Validators.required)
 
   constructor() {}
 
