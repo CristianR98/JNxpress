@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilterService } from 'src/app/services/filter.service';
-import { Busqueda } from 'src/app/class/busqueda.class';
+import { Filter } from 'src/app/class/filter.class';
 
 @Component({
   selector: 'app-results',
@@ -10,7 +10,7 @@ import { Busqueda } from 'src/app/class/busqueda.class';
 })
 export class ResultsComponent implements OnInit {
 
-  params:Busqueda = new Busqueda()
+  params:Filter = new Filter()
 
   ifUSer:boolean
 

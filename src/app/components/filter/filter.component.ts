@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { FilterService } from 'src/app/services/filter.service';
-import { Busqueda } from 'src/app/class/busqueda.class';
+import { Filter } from 'src/app/class/filter.class';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -26,7 +26,7 @@ export class FilterComponent implements OnInit {
       name: 'Usado'
     }
   ]
-  filters:Busqueda = new Busqueda()
+  filters:Filter = new Filter()
   
   term:FormControl = new FormControl('')
   user:FormControl = new FormControl('')

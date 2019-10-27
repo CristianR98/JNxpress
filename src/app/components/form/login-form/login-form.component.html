@@ -30,6 +30,10 @@
 
         </div>
 
+        <mat-error *ngIf="!respuesta?.ok">
+            {{respuesta?.message}}
+        </mat-error>
+
     </form>
 
 </div>

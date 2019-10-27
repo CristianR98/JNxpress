@@ -2,16 +2,22 @@
 
     <form action="" [formGroup]="formulario">
 
-        <div class="field">
+        <div>
             <mat-form-field class="field">
                 <input matInput placeholder="Nombre de Usuario" formControlName="username" [errorStateMatcher]="matcher" cdkFocusInitial>
                 <mat-error *ngIf="username.getError('required')">
-                    Este campo es requerido.
+                    Debe ingresar un nombre de usuario.
                 </mat-error>
             </mat-form-field>
         </div>
 
-        <div class="field">
+        <div>
+            <mat-form-field class="field">
+                <textarea matInput placeholder="Descripción:" formControlName="description" [errorStateMatcher]="matcher"></textarea>
+            </mat-form-field>
+        </div>
+
+        <div>
             <mat-form-field class="field">
                 <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
                 <mat-error *ngIf="email.getError('required')">
@@ -23,19 +29,19 @@
             </mat-form-field>
         </div>
 
-        <div class="field">
+        <div>
             <mat-form-field class="field">
                 <input matInput placeholder="Password" formControlName="password" [errorStateMatcher]="matcher" [type]="hide ? 'password' : 'text'">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hidpassword'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
                 <mat-error *ngIf="password.getError('required')">
-                    Este campo es requerido
+                    Debe ingresar un password.
                 </mat-error>
             </mat-form-field>
         </div>
 
-        <div class="field">
+        <div>
             <mat-form-field class="field">
                 <input matInput type="number" placeholder="Saldo" formControlName="balance" [errorStateMatcher]="matcher">
                 <span matPrefix>$&nbsp;</span>
@@ -51,18 +57,22 @@
             </mat-form-field>
         </div>
 
-        <div class="field">
+        <div>
 
-            <mat-form-field>
-                <mat-label>Intereses:</mat-label>
+            <mat-form-field class="field">
+                <mat-label>Intereses</mat-label>
                 <mat-select multiple formControlName="interest">
-                    <mat-option *ngFor="let item of interestsList;let i = index" [value]="++i">{{item}}</mat-option>
+                    <mat-option *ngFor="let item of interestsList" [value]="item.id">{{item.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
         </div>
 
     </form>
+
+    <mat-error *ngIf="!resp?.ok">
+        {{resp?.message}}
+    </mat-error>
 
 </div>
 <div mat-dialog-actions>

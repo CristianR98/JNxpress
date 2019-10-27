@@ -10,10 +10,14 @@ import { User } from '../class/user.class';
 export class UserService {
 
   session:boolean = false
-  
+  token:string = null
+
   private user:User
   get getUser() {
     return this.user
+  }
+  set setUser(user:User) {
+    this.user = user
   }
 
   backEnd:string = 'http://localhost:8080/jnxpress/'
@@ -21,22 +25,34 @@ export class UserService {
   constructor(
     private http:HttpClient
   ) {
-    this.verifSession().subscribe(resp => {
-      if (resp.status == 200) {
+    let subs = this.verifySession().subscribe(resp => {
+      if (resp.ok) {
         this.user = resp.content
         this.session = true
       }
+      subs.unsubscribe()
     })
   }
 
-  verifSession():Observable<Respuesta<User>>{
-    let url = this.backEnd + 'checkSession'
-    return this.http.get<Respuesta<User>>(url)
+  private getToken() {
+    this.token = localStorage.getItem('token')
+  }
+  public setToken(token:string) {
+    localStorage.setItem('token', token)
   }
 
-  login(email:string, password:string):Observable<Respuesta<User>> {
+  verifySession():Observable<Respuesta<User>>{
+    this.getToken();
+    if (this.token) {
+      let url = this.backEnd + 'verifySession?token=' + this.token
+      return this.http.get<Respuesta<User>>(url)
+    }
+    return new Observable()
+  }
+
+  login(email:string, password:string):Observable<Respuesta<string>> {
     let url = `${this.backEnd}login?email=${email}&password=${password}`
-    return this.http.get<Respuesta<User>>(url)
+    return this.http.get<Respuesta<string>>(url)
   }
 
   register(user:User):Observable<Respuesta<string>> {
@@ -44,9 +60,10 @@ export class UserService {
     return this.http.post<Respuesta<string>>(url, JSON.stringify(user))
   }
 
-  logout():Observable<Respuesta<string>> {
-    let url = this.backEnd + 'logout'
-    return this.http.get<Respuesta<string>>(url)
+  logout():void {
+    localStorage.removeItem('token')
+    this.session = false 
+    this.user = new User({});
   }
 
   putInfo(userInfo:User):Observable<Respuesta<string>> {

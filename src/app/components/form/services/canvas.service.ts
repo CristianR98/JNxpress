@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class CanvasService {
@@ -6,6 +7,9 @@ export class CanvasService {
   canvas:HTMLCanvasElement
   context:CanvasRenderingContext2D
   image:HTMLImageElement | any
+
+  subjectImage:Subject<File> = new Subject();
+  imageCanvas$:Observable<File> = this.subjectImage.asObservable()
 
   public canvasWidth:number
   public canvasHeight:number
@@ -30,6 +34,8 @@ export class CanvasService {
   constructor() {}
 
   public start(canvas:HTMLCanvasElement,file:File):void {
+
+    
     this.imagePositionX = 0
     this.imagePositionY = 0
     this.initialX = 0
@@ -105,8 +111,6 @@ export class CanvasService {
       this.move = true
       this.initialX = e.clientX
       this.initialY = e.clientY
-      // console.log('presiono click: x:' + this.initialX + ', y :' + this.initialY)
-      // console.log('presiono click: x:' + this.imagePositionX + ', y :' + this.imagePositionY)
     }
     this.canvas.onmouseleave = () => {
       this.move = false
@@ -176,6 +180,13 @@ export class CanvasService {
 
     this.context.drawImage(this.image,this.imagePositionX, this.imagePositionY, this.imageWidth, this.imageHeight)
   
+  }
+
+  public getImageCanvas(name:string):Observable<File> {
+    this.canvas.toBlob((blob) => {
+      this.subjectImage.next(new File([blob],name+'-min.jpg',{type:'image/jpeg'}))
+    })
+    return this.imageCanvas$
   }
 
 }

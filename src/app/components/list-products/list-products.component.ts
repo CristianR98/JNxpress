@@ -21,10 +21,6 @@ export class ListProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productsService.renderProducts$.subscribe(products => {
-      this.products = products
-    })
-    this.productsService.update()
   }
 
   

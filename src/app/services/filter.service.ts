@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Busqueda } from '../class/busqueda.class';
+import { Filter } from '../class/filter.class';
 import { Router } from '@angular/router';
 import { HttpService } from './http.service';
 import { Subject } from 'rxjs';
@@ -9,8 +9,8 @@ import { Subject } from 'rxjs';
 })
 export class FilterService {
 
-  private busqueda:Busqueda = new Busqueda()
-  private subjectFilters = new Subject<Busqueda>()
+  private filter:Filter = new Filter()
+  private subjectFilters = new Subject<Filter>()
   public filters$ = this.subjectFilters.asObservable()
   private route:string[] 
   set setRoute(ruta:string[]) {
@@ -23,20 +23,20 @@ export class FilterService {
   ) {
   }
 
-  updateFilter(busqueda:Busqueda) {
-    this.voids(busqueda)
-    this.busqueda = busqueda
+  updateFilter(filter:Filter) {
+    this.voids(filter)
+    this.filter = filter
     this.navigate()
   }
 
   private navigate() {
-    this.router.navigate(this.route,{queryParams :this.busqueda})
+    this.router.navigate(this.route,{queryParams :this.filter})
   }
   
-  setBusqueda(busqueda) {
-    this.busqueda = busqueda
+  setBusqueda(filter) {
+    this.filter = filter
     setTimeout(() => {
-      this.subjectFilters.next(this.busqueda)
+      this.subjectFilters.next(this.filter)
     }, 0);
   }
 

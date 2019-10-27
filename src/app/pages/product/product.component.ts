@@ -48,11 +48,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((data:any) => {
-      this.id = data.params.id
-      this.productsService.obsProducts.subscribe(()=>{
-        this.product = this.productsService.getProduct(this.id)
-      })
-      this.productsService.update()
+      
     })
   }
 

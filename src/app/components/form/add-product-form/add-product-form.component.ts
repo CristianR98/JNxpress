@@ -2,6 +2,9 @@ import { Component, OnInit} from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { DialogService } from 'src/app/services/dialog.service';
+import { CanvasService } from '../services/canvas.service';
+import { Product } from 'src/app/class/product.class';
+import { Category } from 'src/app/class/category.class';
 
 @Component({
   selector: 'app-add-product-form',
@@ -12,11 +15,27 @@ export class AddProductFormComponent implements OnInit {
 
   title = 'Publicar producto:'
 
-  categories: string[] = ['Electronica','Ropa','Celulares','Electrodomesticos']
+  categories: Category[] = [
+    {
+      id:1,
+      name:'Electronica'
+    }
+    ,{
+      id:2,
+      name:'Celulares'
+    },{
+      id:3,
+      name:'Ropa'
+    },{
+      id:4,
+      name:'Electrodomesticos'
+    }
+  ]
 
   name:FormControl = new FormControl('',Validators.required)
   description:FormControl = new FormControl('')
   price:FormControl = new FormControl('',Validators.required)
+  stock:FormControl = new FormControl('',[Validators.required,Validators.min(1)])
   category:FormControl = new FormControl('',Validators.required)
   image:FormControl = new FormControl('',Validators.required)
 
@@ -36,7 +55,8 @@ export class AddProductFormComponent implements OnInit {
 
 
   constructor(
-    public dialogService:DialogService
+    private dialogService:DialogService,
+    private canvasService:CanvasService
   ) {}
 
   ngOnInit() {
@@ -44,18 +64,23 @@ export class AddProductFormComponent implements OnInit {
   }
 
   cargarArchivo(file:HTMLInputElement) {
-    console.log(this.image)
     this.file = file.files[0]
   }
 
   publicar() {
     if (this.formulario.valid) {
-      let form = new FormData()
-      let values = this.formulario.value
-      form.append('name', values.name)
-      form.append('description', values.description)
-      form.append('image', this.file)
-      form.append('price', values.price)
+      this.canvasService.getImageCanvas(this.file.name)
+      console.log('hola')
+      this.canvasService.imageCanvas$.subscribe((file)=> {
+        console.log('hola')
+        let form = new FormData()
+        form.append('img',this.file)
+        form.append('img-min',file)
+        let product = new Product(this.formulario.value)
+        console.log(product)
+        console.log(form.get('img'))
+        console.log(form.get('img-min'))
+      })
     }
   }
 
