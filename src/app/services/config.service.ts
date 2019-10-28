@@ -7,12 +7,18 @@ export class ConfigService {
 
   constructor() {}
 
-  getToken():string {
+  private readonly URL:string = 'http://localhost:8080/jnxpress/'
+
+  get getToken():string {
     return localStorage.getItem('token')
   }
 
-  setToken(token:string):void {
+  set setToken(token:string) {
     localStorage.setItem('token',token)
   }
+
+  get getURL() {
+    return this.URL
+  } 
 
 }
