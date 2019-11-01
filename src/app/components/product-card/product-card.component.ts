@@ -1,9 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/class/product.class';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/models/user.service';
 import { Router } from '@angular/router';
-import { SnackbarService } from 'src/app/services/snackbar.service';
+import { SnackbarService } from 'src/app/services/components/snackbar.service';
+import { DialogService } from 'src/app/services/components/dialog.service';
+import { FormComponent } from 'src/app/dialog/forms/form.component';
+import { AlertsComponent } from 'src/app/dialog/alerts/alerts.component';
+import { ProductsService } from 'src/app/services/models/products.service';
 
 @Component({
   selector: 'app-product-card',
@@ -18,19 +21,31 @@ export class ProductCardComponent implements OnInit {
 
   constructor(
     public userService:UserService,
+    public dialogService:DialogService,
     private router:Router,
-    private snackbarService:SnackbarService
+    private snackbarService:SnackbarService,
+    private productsService:ProductsService
     ) { }
 
   ngOnInit() {
+    console.log(this.product)
   }
   
-  addOrRemFavorite(product:Product){
-    this.snackbarService.addOrRemoveFavorite(product)
+  favorite():void {
+    this.productsService.addOrRemoveFavorite(this.product.id).subscribe(resp => {
+        this.snackbarService.notify(resp.message)
+    })
   }
 
-  irAProduct(index:number) {
+  irAProduct(index:number):void {
     this.router.navigate(['product',this.product.id])
+  }
+
+  openDialog(type:string, id:number):void {
+      this.dialogService.openDialog(FormComponent, type, id)
+  }
+  openAlert(type:string, id:number):void {
+      this.dialogService.openDialog(AlertsComponent, type, id)
   }
 
 }

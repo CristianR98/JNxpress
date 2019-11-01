@@ -1,2 +1,5 @@
-<app-filter class="filter"></app-filter>
-<app-list-products [title]="title" [ifUser]="ifUSer"></app-list-products>
+<app-filter [ifUser]="ifUSer" class="filter"></app-filter>
+<app-list-products [title]="title" [ifUser]="ifUSer" [products]="products" *ngIf="!loading"></app-list-products>
+<button mat-raised-button color="primary" (click)="verMas()" *ngIf="!loading">Ver mas</button>
+<mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
+<div class="padding"></div>

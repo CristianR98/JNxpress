@@ -1,0 +1,27 @@
+<div mat-dialog-content  *ngIf="loading">
+    <mat-spinner class="spinner"></mat-spinner>
+</div>
+<div mat-dialog-content *ngIf="!loading">
+
+
+    <form [formGroup]="form">
+
+        <app-appreciation [edit]="true" (reviewValue)="appreciation.setValue($event)" [appreciation]="appreciation.value"></app-appreciation>
+        <input formControlName="appreciation" *ngIf="false">
+
+        <mat-form-field class="field">
+            <textarea matInput placeholder="Tu reseña ..." formControlName="review" [errorStateMatcher]="matcher"></textarea>
+            <mat-error *ngIf="review.getError('required')">
+                La reseña es obligatoria.
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+
+
+</div>
+<div mat-dialog-actions *ngIf="!loading">
+    <button [disabled]="!form.valid || send" mat-raised-button color="primary" (click)="postReview()">Reseñar</button>
+    <button mat-raised-button [disabled]="send" [mat-dialog-close]>Cancelar</button>
+    <mat-spinner [diameter]="30" class="ml" *ngIf="send"></mat-spinner>
+</div>

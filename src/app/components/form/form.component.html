@@ -1,9 +1,0 @@
-<h1 mat-dialog-title>{{dialogService.getTitle}}</h1>
-<div class="form" [ngSwitch]="data.type">
-    <app-login-form class="container" *ngSwitchCase=1></app-login-form>
-    <app-register-form class="container" *ngSwitchCase=2></app-register-form>
-    <app-add-product-form class="container" *ngSwitchCase=3></app-add-product-form>
-    <app-review-form *ngSwitchCase=4></app-review-form>
-    <app-add-balance-form *ngSwitchCase=5></app-add-balance-form>
-    <app-sale-form *ngSwitchCase=6></app-sale-form>
-</div>

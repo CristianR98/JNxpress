@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{dialogService.getTitle}}</h1>
+<div class="form" [ngSwitch]="data.type">
+    <app-login-form *ngSwitchCase="'login'"></app-login-form>
+
+    <app-register-form *ngSwitchCase="'register'"></app-register-form>
+
+    <app-product-form *ngSwitchCase="'publicar'"></app-product-form>
+
+    <app-product-form [id]="data.target" *ngSwitchCase="'edit-product'"></app-product-form>
+
+    <app-review-form [type]="data.type" [id]="data.target" *ngSwitchCase="'user-review'"></app-review-form>
+
+    <app-review-form [type]="data.type" [id]="data.target" *ngSwitchCase="'product-review'"></app-review-form>
+
+    <app-add-balance-form *ngSwitchCase="'balance'"></app-add-balance-form>
+    
+    <app-sale-form [id]="data.target" *ngSwitchCase="'sale'"></app-sale-form>
+
+    <app-change-password *ngSwitchCase="'change-pass'"></app-change-password>
+
+    <app-edit-info-form *ngSwitchCase="'edit-info'"></app-edit-info-form>
+
+    <app-edit-interest-form *ngSwitchCase="'edit-interest'"></app-edit-interest-form>
+</div>

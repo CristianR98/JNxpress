@@ -1,19 +1,22 @@
 <article class="component-container user">
-    <app-user-card [user]="user" [perfil]="perfil" class="user-card principal"></app-user-card>
+    <app-user-card *ngIf="user" [loading]="loading" [user]="user" [perfil]="perfil" class="user-card principal"></app-user-card>
+
     <div class="panel-vendedor panel">
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 Reseñas como vendedor.
             </mat-expansion-panel-header>
-            <app-reviews type="usuarios" [reviews]="reviewsUser"></app-reviews>
+            <app-reviews *ngIf="user" [id]=user.id type=user></app-reviews>
         </mat-expansion-panel>
     </div>
+
     <div class="panel-reviews panel">
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 Reseñas de productos.
             </mat-expansion-panel-header>
-            <app-reviews type="productos" [reviews]="reviewsProduct"></app-reviews>
+            <app-reviews *ngIf="user" [id]="user.id" type=product></app-reviews>
         </mat-expansion-panel>
     </div>
+
 </article>

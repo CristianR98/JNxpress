@@ -1,7 +1,7 @@
 <article class="article" *ngFor="let review of reviews">
     <header class="review-header">
         <h1 class="username">{{review.username}}:</h1>
-        <app-appreciation class="points" [appreciation]="review.points"></app-appreciation>
+        <app-appreciation class="points" [small]="true" [appreciation]="review.appreciation"></app-appreciation>
     </header>
     <h4 class="product" *ngIf="review.product" [routerLink]="review.productRoute">{{review.product}}</h4>
     <p class="content">"{{review.content}}"</p>

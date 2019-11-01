@@ -1,0 +1,33 @@
+<div class="cont">
+<h2>{{title}}</h2>
+<table *ngIf="sales" mat-table [dataSource]="sales"  class="mat-elevation-z8 table">
+
+  <ng-container matColumnDef="user">
+    <th mat-header-cell *matHeaderCellDef class="cell"> No. </th>
+    <td mat-cell *matCellDef="let element" class="cell"> {{element.user}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="product">
+    <th mat-header-cell *matHeaderCellDef class="cell"> Product </th>
+    <td mat-cell *matCellDef="let element" class="cell"> {{element.product.name}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="lot">
+    <th mat-header-cell *matHeaderCellDef class="cell"> Cantidad </th>
+    <td mat-cell *matCellDef="let element" class="cell"> {{element.lot}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="date" class="cell">
+    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+    <td mat-cell *matCellDef="let element"> {{element.date | date}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+</table>
+
+</div>
+

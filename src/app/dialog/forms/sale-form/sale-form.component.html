@@ -1,0 +1,30 @@
+<div mat-dialog-content>
+    <mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
+</div>
+<div mat-dialog-content *ngIf="!loading">
+
+
+    <form [formGroup]="form">
+
+        <div class="field">
+            <mat-form-field class="field">
+                <input matInput placeholder="Cantidad" type="number" formControlName="stock" [errorStateMatcher]="matcher" cdkFocusInitial>
+                <mat-error *ngIf="stock.getError('required')">
+                    Debe ingresar una cantidad.
+                </mat-error>
+                <mat-error *ngIf="stock.getError('min')">
+                    Debe comprar un minimo de 1.
+                </mat-error>
+                <mat-error *ngIf="stock.getError('max')">
+                    Debe elegir una cantidad menor al stock.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+    </form>
+
+</div>
+<div mat-dialog-actions>
+    <button [disabled]="!form.valid" class="buttons" mat-raised-button color="primary" (click)="comprar()">Comprar</button>
+    <button class="buttons" mat-raised-button [mat-dialog-close]>Cancelar</button>
+</div>

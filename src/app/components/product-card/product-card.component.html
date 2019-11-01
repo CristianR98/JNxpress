@@ -4,15 +4,17 @@
         <mat-card-subtitle class="subtitle" *ngIf="product.user">Por {{product.user.username}}</mat-card-subtitle>
     </div>
     <div class="img-container">
-        <img class="img" [src]="product.image" [alt]="product.name">
+        <img class="img" [src]="product.imageMin" [alt]="product.name">
     </div>
     <mat-card-content class="price">{{product.price | currency}}</mat-card-content>
     <mat-card-actions class="actions">
 
-        <button *ngIf="ifUser" mat-raised-button color="primary">Editar</button>
-        <button *ngIf="ifUser" mat-raised-button color="warn">Eliminar</button>
+        <button *ngIf="ifUser" (click)="openDialog('edit-product',product.id)" mat-raised-button color="primary">Editar</button>
+        <button *ngIf="ifUser" (click)="openAlert('delete-product',product.id)" mat-raised-button color="warn">Eliminar</button>
 
-        <button mat-icon-button color="primary" (click)="addOrRemFavorite(product)" *ngIf="userService.session && !ifUser"><mat-icon>{{product.favorite}}</mat-icon></button>
+        <button mat-icon-button color="primary" (click)="favorite()" *ngIf="userService.session && !ifUser">
+            <mat-icon>{{product.favorite?'favorite':'favorite_border'}}</mat-icon>
+        </button>
 
 
         <button mat-button (click)="irAProduct()">Ver mas...</button>

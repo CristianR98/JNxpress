@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { FormComponent } from '../form/form.component';
+import { FormComponent } from '../../dialog/forms/form.component';
 import { MatSidenav } from '@angular/material/sidenav';
-import { AlertComponent } from '../alert/alert.component';
-import { UserService } from 'src/app/services/user.service';
-import { DialogService } from 'src/app/services/dialog.service';
+import { AlertsComponent } from '../../dialog/alerts/alerts.component';
+import { UserService } from 'src/app/services/models/user.service';
+import { DialogService } from 'src/app/services/components/dialog.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -23,14 +22,14 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  openDialog(type:number) {
+  openDialog(type:string) {
     this.closeSidebar()
     this.dialogService.openDialog(FormComponent,type)
   }
 
-  openAlert(type:number) {
+  openAlert(type:string) {
     this.closeSidebar()
-    this.dialogService.openDialog(AlertComponent,type)
+    this.dialogService.openDialog(AlertsComponent,type)
   }
   
   protected closeSidebar() {

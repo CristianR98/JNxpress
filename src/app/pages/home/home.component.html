@@ -1,1 +1,1 @@
-<app-list-products *ngFor="let list of lists" [title]="list"></app-list-products>
+<app-list-products *ngFor="let list of sections; let i = index" [products]="list" [title]="titles[i]"></app-list-products>

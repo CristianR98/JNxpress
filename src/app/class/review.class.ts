@@ -1,22 +1,14 @@
 import { User } from './user.class'
-import { Product } from './product.class'
 
-export class Review {
+export class Review<T> {
     id:number
-    username:string
+    user:User
+    target:T
     content:string
-    points:number
+    appreciation:number
     date:Date
 
-    constructor(review) {
-        this.id = review.id
-        this.content = review.content
-        this.points = review.points
+    constructor() {
+        
     }
-
-}
-
-export class ProductReview extends Review {
-    product:string
-    productRoute:string[]
 }

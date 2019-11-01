@@ -1,6 +1,5 @@
 <mat-accordion class="accordion">
 
-
     <mat-expansion-panel [expanded]="true" class="expansion">
 
         <mat-expansion-panel-header>
@@ -19,7 +18,7 @@
             </mat-form-field>
 
 
-            <mat-form-field class="field">
+            <mat-form-field class="field" *ngIf="!ifUser">
                 <mat-label>Usuario</mat-label>
                 <input matInput formControlName="user" (input)="updateFilter()">
                 <mat-icon matSuffix>person</mat-icon>
@@ -29,6 +28,7 @@
             <mat-form-field class="field">
                 <mat-label>Categoría</mat-label>
                 <mat-select formControlName="category" (selectionChange)="updateFilter()">
+                    <mat-option value=0>Todas</mat-option>
                     <mat-option *ngFor="let category of categories" [value]="category.id">
                         {{category.name}}
                     </mat-option>

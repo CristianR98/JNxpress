@@ -15,6 +15,10 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.spinner {
+    margin: auto;
+}
+
 .router-outlet {
     padding-top: 4rem;
 }
@@ -34,6 +38,10 @@ body {
 
 .cursor {
     cursor: pointer;
+}
+
+.ml {
+    margin-left: 1rem;
 }
 
 

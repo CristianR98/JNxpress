@@ -1,0 +1,26 @@
+<div mat-dialog-content *ngIf="loading">
+    <mat-spinner class="spinner"></mat-spinner>
+</div>
+<div mat-dialog-content *ngIf="!loading">
+
+    <mat-form-field class="field">
+        <mat-label>Intereses</mat-label>
+        <mat-select multiple [formControl]="interest">
+            <mat-option *ngFor="let category of categories" [value]="category.id">
+                {{category.name}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="interest.getError('minlength')">
+            Debe elegir al menos 2.
+        </mat-error>
+        <mat-error *ngIf="interest.getError('required')">
+            Debe elegir al menos 2.
+        </mat-error>
+    </mat-form-field>
+
+</div>
+<div mat-dialog-actions *ngIf="!loading">
+    <button [disabled]="!interest.valid || send" class="buttons" mat-raised-button color="primary" (click)="edit()">Editar</button>
+    <button class="buttons" mat-raised-button [disabled]="send" [mat-dialog-close]>Cancelar</button>
+    <mat-spinner [diameter]="" *ngIf="send"></mat-spinner>
+</div>

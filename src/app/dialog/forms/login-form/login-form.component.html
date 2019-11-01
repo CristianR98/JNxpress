@@ -1,0 +1,44 @@
+<div mat-dialog-content>
+
+    <form action="" [formGroup]="formulario">
+
+        <div class="field">
+            <mat-form-field class="field">
+                <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher" cdkFocusInitial>
+                <mat-error *ngIf="email.getError('required')">
+                    Este campo es requerido.
+                </mat-error>
+                <mat-error *ngIf="email.getError('email')">
+                    Debe ingresar un email valido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div class="field">
+
+            <mat-form-field class="field">
+                <input matInput placeholder="Password" formControlName="password" [errorStateMatcher]="matcher" [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hidpassword'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                <mat-error *ngIf="password.getError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+
+
+        </div>
+
+        <mat-error *ngIf="!respuesta?.ok">
+            {{respuesta?.message}}
+        </mat-error>
+
+    </form>
+
+</div>
+<div mat-dialog-actions>
+    <button [disabled]="!formulario.valid || send" class="buttons" mat-raised-button color="primary" (click)="iniciarSesion()">Iniciar Sesión</button>
+    <button class="buttons" mat-raised-button [disabled]="send" [mat-dialog-close]>Cancelar</button>
+    <mat-spinner [diameter]="30" *ngIf="send" class="ml"></mat-spinner>
+</div>

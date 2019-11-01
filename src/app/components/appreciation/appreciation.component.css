@@ -7,9 +7,14 @@
     margin: .5rem 0;
 }
 
-@media screen and (min-width:720px) {
-    .star {
-        font-size: 2rem;
-        margin-right: .7rem;
-    }
+.star {
+    font-size: 2.4rem;
+    margin-right: .7rem;
 }
+
+.small {
+    font-size: 1.5rem;
+    margin-right: .3rem;
+}
+
+@media screen and (min-width:720px) {}

@@ -1,0 +1,8 @@
+<mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
+<div *ngIf="message" mat-dialog-content>
+    {{message}}
+</div>
+<div mat-dialog-actions *ngIf="!loading">
+    <button mat-raised-button color="warn" (click)="delete()">Eliminar</button>
+    <button mat-raised-button color="basic" [mat-dialog-close]>Cancelar</button>
+</div>

@@ -1,0 +1,84 @@
+<div mat-dialog-content *ngIf="loading">
+    <mat-spinner class="spinner"></mat-spinner>
+</div>
+<div mat-dialog-content *ngIf="!loading">
+    <form [formGroup]="form">
+
+
+        <mat-form-field class="field">
+            <input matInput placeholder="Nombre del producto" formControlName="name" [errorStateMatcher]="matcher" cdkFocusInitial>
+            <mat-error *ngIf="name.getError('required')">
+                Debe ingresar un nombre para el producto.
+            </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="field">
+            <textarea matInput placeholder="Descripción" formControlName="description" [errorStateMatcher]="matcher"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+            <input matInput type="number" placeholder="Precio" formControlName="price" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="price.getError('required')">
+                Debe ingresar un precio para su producto.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+            <input matInput type="number" placeholder="Stock" formControlName="stock" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="stock.getError('required')">
+                Debe ingresar un stock.
+            </mat-error>
+            <mat-error *ngIf="stock.getError('min')">
+                Debe ingresar un minimo de 1.
+            </mat-error>
+            <mat-error *ngIf="stock.getError('max')">
+                No debe superar los 999.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+            <mat-label>Categoría</mat-label>
+            <mat-select formControlName="category">
+                <mat-option *ngFor="let catego of categories ;let i = index" [value]="catego.id">{{catego.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="category.getError('required')">
+                Debe seleccionar una categoría
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+            <mat-label>Condición</mat-label>
+            <mat-select formControlName="condition">
+                <mat-option [value]="1">Nuevo</mat-option>
+                <mat-option [value]="2">Usado</mat-option>
+            </mat-select>
+            <mat-error *ngIf="condition.getError('required')">
+                Debe seleccionar una categoría
+            </mat-error>
+        </mat-form-field>
+
+        <div class="preview">
+            <app-canvas *ngIf="file" [file]="file"></app-canvas>
+            <label *ngIf="file" class="change-image-label">
+                <p class="change-image-text">Cambiar imagen</p>
+                <input #changeFile type="file" class="change-image-input" (change)="cargarArchivo(changeFile)">
+            </label>
+            <label class="field label" *ngIf="!file">
+                <p class="text-label">Click para subir un imagen!</p>
+                <input class=file #inputFile (change)="cargarArchivo(inputFile)" type="file" formControlName="image">
+            </label>
+            <div *ngIf="image.getError('required')">
+                Debe ingresar una imagen!
+            </div>
+        </div>
+
+
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button *ngIf="!id" [disabled]="!form.valid || send" class="buttons" mat-raised-button color="primary" (click)="post()">Publicar</button>
+    <button *ngIf="id" [disabled]="!form.valid || send" class="buttons" mat-raised-button color="primary" (click)="post()">Editar</button>
+    <button class="buttons" mat-raised-button [disabled]="send" [mat-dialog-close]>Cancelar</button>
+    <mat-spinner [diameter]="30" class="ml" *ngIf="send"></mat-spinner>
+</div>

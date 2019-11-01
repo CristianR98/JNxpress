@@ -1,6 +1,7 @@
 import { User } from './user.class'
 import { Review } from './review.class'
 import { Category } from './category.class'
+import { Condition } from './condition.class'
 
 export class Product {
 
@@ -9,11 +10,14 @@ export class Product {
     name:string
     description:string
     image:string
+    imageMin:string
     price:number
-    category:Category
     stock:number
-    stockTotal:number
-    favorite:string
+    category:Category
+    condition:Condition
+    appreciation:number
+    favorite:boolean
+    isYourProduct:boolean
 
     constructor(product) {
         this.name = product.name

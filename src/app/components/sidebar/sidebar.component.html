@@ -1,12 +1,34 @@
 <div class="sidebar">
     <ul>
         <li *ngIf="userService.session">
+            <div class="info">
+                <h3 class="title">{{userService.getUser.username}}</h3>
+                <h4 class="subtitle">{{userService.getUser.balance | currency}}</h4>
+            </div>
             <mat-toolbar color="accent">Ver</mat-toolbar>
             <mat-nav-list>
                 <mat-list-item routerLink="mi-perfil" (click)="closeSidebar()">
                     <div class="navigation-link">
                         <a>Mi perfil</a>
                         <mat-icon>person</mat-icon>
+                    </div>
+                </mat-list-item>
+                <mat-list-item routerLink="mis-productos" (click)="closeSidebar()">
+                    <div class="navigation-link">
+                        <a>Mis productos</a>
+                        <mat-icon>work</mat-icon>
+                    </div>
+                </mat-list-item>
+                <mat-list-item routerLink="ventas" (click)="closeSidebar()">
+                    <div class="navigation-link">
+                        <a>Ventas</a>
+                        <mat-icon>book</mat-icon>
+                    </div>
+                </mat-list-item>
+                <mat-list-item routerLink="compras" (click)="closeSidebar()">
+                    <div class="navigation-link">
+                        <a>Compras</a>
+                        <mat-icon>shopping_cart</mat-icon>
                     </div>
                 </mat-list-item>
                 <mat-list-item routerLink="favoritos" (click)="closeSidebar()">
@@ -20,46 +42,34 @@
         <li>
             <mat-toolbar color="accent">Acciones</mat-toolbar>
             <mat-nav-list>
-                <mat-list-item (click)="openDialog(1)" *ngIf="!userService.session">
+                <mat-list-item (click)="openDialog('login')" *ngIf="!userService.session">
                     <div class="navigation-link">
                         <a>Iniciar sesión</a>
                         <mat-icon>input</mat-icon>
                     </div>
                 </mat-list-item>
-                <mat-list-item (click)="openDialog(2)" *ngIf="!userService.session">
+                <mat-list-item (click)="openDialog('register')" *ngIf="!userService.session">
                     <div class="navigation-link">
                         <a>Registrarse</a>
                         <mat-icon>person_add</mat-icon>
                     </div>
                 </mat-list-item>
-                <mat-list-item (click)="openDialog(3)" *ngIf="userService.session">
+                <mat-list-item (click)="openDialog('publicar')" *ngIf="userService.session">
                     <div class="navigation-link">
                         <a>Publicar producto</a>
                         <mat-icon>post_add</mat-icon>
                     </div>
                 </mat-list-item>
-                <mat-list-item *ngIf="userService.session" (click)="openDialog(5)">
+                <mat-list-item *ngIf="userService.session" (click)="openDialog('balance')">
                     <div class="navigation-link">
                         <a>Agregar saldo</a>
                         <mat-icon>account_balance_wallet</mat-icon>
                     </div>
                 </mat-list-item>
-                <mat-list-item (click)="openDialog(2)" *ngIf="userService.session">
-                    <div class="navigation-link">
-                        <a>Configuración</a>
-                        <mat-icon>build</mat-icon>
-                    </div>
-                </mat-list-item>
-                <mat-list-item (click)="openAlert(1)" *ngIf="userService.session">
+                <mat-list-item (click)="openAlert('logout')" *ngIf="userService.session">
                     <div class="navigation-link">
                         <a>Cerrar sesión</a>
                         <mat-icon>exit_to_app</mat-icon>
-                    </div>
-                </mat-list-item>
-                <mat-list-item>
-                    <div class="navigation-link">
-                        <a>Sobre JNxpress</a>
-                        <mat-icon>info</mat-icon>
                     </div>
                 </mat-list-item>
             </mat-nav-list>

@@ -3,6 +3,15 @@
     flex-direction: column;
 }
 
+.title-card {
+    font-size: 1.4rem;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
 .other-info {
     margin-bottom: .3rem;
 }

@@ -1,5 +1,6 @@
 <div class="container component-container" *ngIf="product">
-    <mat-card class="card principal">
+    <mat-spinner *ngIf="!product" class="spinner"></mat-spinner>
+    <mat-card *ngIf="product" class="card principal">
         <mat-card-header>
             <mat-card-title>
                 <h1 class="title">{{product.name}}</h1>
@@ -7,20 +8,29 @@
         </mat-card-header>
         <img class="img mb" [src]="product.image" [alt]="product.name">
         <mat-card-content>
+            <app-appreciation [appreciation]="product.appreciation"></app-appreciation>
             <h2 class="mb title-content">Descripción:</h2>
             <p class="mb description">
                 {{product.description}}
             </p>
+            <h3>{{product.price | currency}}</h3>
             <small class="stock mb">Stock: {{product.stock}}</small>
-            <p *ngIf="!userService.session"><small>*Debes iniciar sesión para comprar.</small></p>
+            <p *ngIf="!userService.session">*Debes iniciar sesión para comprar.</p>
+            <p *ngIf="product.stock == 0 && userService.session">*Este producto ya no esta disponible.</p>
         </mat-card-content>
-        <mat-card-actions *ngIf="userService.session">
-            <button mat-raised-button color="primary" (click)="openDialog(6)">Comprar</button>
-            <button mat-raised-button color="primary">Añadir a favoritos</button>
+        <mat-card-actions *ngIf="userService.session && !product.isYourProduct && product.stock > 0">
+            <button mat-raised-button color="primary" (click)="openDialog('sale')">Comprar</button>
+            <button mat-raised-button color="primary" (click)="openDialog('product-review')">Reseñar</button>
+            <button mat-raised-button color="primary" (click)="favorite()"><mat-icon>{{product.favorite?'favorite':'favorite_border'}}</mat-icon>Añadir a favoritos</button>
+        </mat-card-actions>
+        <mat-card-actions *ngIf="userService.session && product.isYourProduct">
+            <button mat-raised-button color="primary" (click)="openDialog('edit-product')">Editar</button>
+            <button mat-raised-button color="warn" (click)="openAlert('delete-product')">Eliminar</button>
+            <button mat-raised-button color="primary" (click)="favorite()"><mat-icon>{{product.favorite?'favorite':'favorite_border'}}</mat-icon> Añadir a favoritos</button>
         </mat-card-actions>
         <mat-card-actions *ngIf="!userService.session">
-            <button mat-raised-button color="primary" (click)="openDialog(1)">Iniciar Sesión</button>
-            <button mat-raised-button color="primary" (click)="openDialog(2)">Registrarse</button>
+            <button mat-raised-button color="primary" (click)="openDialog('login')">Iniciar Sesión</button>
+            <button mat-raised-button color="primary" (click)="openDialog('register')">Registrarse</button>
         </mat-card-actions>
     </mat-card>
     <div class="panel-vendedor panel">
@@ -28,12 +38,13 @@
             <mat-expansion-panel-header>
                 Información del vendedor
             </mat-expansion-panel-header>
-            <article *ngIf="product.user">
-                <h1 class="username">{{product.user.username}}</h1>
-                <p>Ventas: {{product.user.sales}}</p>
-                <app-appreciation [appreciation]="product.user.appreciation" inline=true></app-appreciation>
-                <button mat-raised-button color="primary" [routerLink]="['/user',product.user.id]">Ir a perfil</button>
+            <article *ngIf="user">
+                <h1 class="username">{{user.username}}</h1>
+                <p>Ventas: {{user.sales}}</p>
+                <app-appreciation [appreciation]="user.appreciation" small=true inline=true></app-appreciation>
+                <button mat-raised-button color="primary" [routerLink]="['/user',user.id]">Ir a perfil</button>
             </article>
+            <mat-spinner *ngIf="!user" class="spinner"></mat-spinner>
         </mat-expansion-panel>
     </div>
     <div class="panel-reviews panel">
@@ -41,7 +52,8 @@
             <mat-expansion-panel-header>
                 Reseñas
             </mat-expansion-panel-header>
-            <app-reviews [reviews]="reviews"></app-reviews>
+            <app-reviews [id]="product.id" [type]="'product'" *ngIf="product"></app-reviews>
+            <mat-spinner *ngIf="!product" class="spinner"></mat-spinner>
         </mat-expansion-panel>
     </div>
 </div>

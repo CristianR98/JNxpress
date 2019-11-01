@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/class/product.class';
-import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-list-products',
@@ -10,19 +9,21 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ListProductsComponent implements OnInit {
 
   @Input() title:string
-  snackCicle:boolean = true
 
   @Input() ifUser:boolean
 
-  products:Product[] = []
+  @Input() products:Product[] = []
 
-  constructor(
-    private productsService:ProductsService) {
+  @Input() loading:boolean
+
+  constructor() {
   }
 
   ngOnInit() {
   }
 
-  
+  ngOnChanges(): void {
+    console.log(this.products)
+  }
 
 }

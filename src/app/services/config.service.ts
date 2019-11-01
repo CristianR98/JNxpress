@@ -10,7 +10,7 @@ export class ConfigService {
   private readonly URL:string = 'http://localhost:8080/jnxpress/'
 
   get getToken():string {
-    return localStorage.getItem('token')
+    return localStorage.getItem('token') || 'eqerqiurwoqyrwiuyrqiur.qrqwiurqwruqwjfqwrp8q.rqwrjqopirqwyr'
   }
 
   set setToken(token:string) {

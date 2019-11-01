@@ -15,9 +15,8 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatDividerModule } from '@angular/material/divider'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
-import { MatTabsModule } from '@angular/material/tabs'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatTableModule } from '@angular/material/table'
-
 
 @NgModule({
   declarations: [],
@@ -37,7 +36,7 @@ import { MatTableModule } from '@angular/material/table'
     MatDividerModule,
     MatSidenavModule,
     MatListModule,
-    MatTabsModule,
+    MatProgressSpinnerModule,
     MatTableModule
   ]
 })

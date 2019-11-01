@@ -1,0 +1,27 @@
+<div mat-dialog-content>
+
+    <form [formGroup]="formulario">
+
+        <div class="field">
+            <mat-form-field class="field">
+                <input matInput placeholder="Saldo" type="number" formControlName="balance" [errorStateMatcher]="matcher" cdkFocusInitial>
+                <mat-error *ngIf="balance.getError('required')">
+                    Debe ingresar el saldo a agregar.
+                </mat-error>
+                <mat-error *ngIf="balance.getError('min')">
+                    Debe ingresar al menos $100.
+                </mat-error>
+                <mat-error *ngIf="balance.getError('max')">
+                    No cifras de mas de 6 digitos.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+    </form>
+
+</div>
+<div mat-dialog-actions>
+    <button [disabled]="!formulario.valid || send" class="buttons" mat-raised-button color="primary" (click)="addBalance()">Agregar</button>
+    <button class="buttons" mat-raised-button [disabled]="send" [mat-dialog-close]>Cancelar</button>
+    <mat-spinner [diameter]="30" *ngIf="send"></mat-spinner>
+</div>

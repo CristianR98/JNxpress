@@ -1,0 +1,5 @@
+<h1 mat-dialog-title>{{dialogService.getTitle}}</h1>
+<div [ngSwitch]="data.type">
+    <app-logout *ngSwitchCase="'logout'"></app-logout>
+    <app-delete-product *ngSwitchCase="'delete-product'" [id]="data.target"></app-delete-product>
+</div>

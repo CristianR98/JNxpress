@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/services/http.service';
-import { FilterService } from 'src/app/services/filter.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FilterService } from 'src/app/services/components/filter.service';
 import { Filter } from 'src/app/class/filter.class';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Category } from 'src/app/class/category.class';
+import { CategoriesService } from 'src/app/services/models/categories.service';
+import { Subscription } from 'rxjs';
+import { Product } from 'src/app/class/product.class';
 
 @Component({
   selector: 'app-filter',
@@ -11,7 +14,12 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class FilterComponent implements OnInit {
 
-  categories:any[]
+  @Input() ifUser:boolean
+
+  @Input() filter:Filter
+ 
+  categories:Category[]
+
   conditions:any[] = [
     {
       value: 0,
@@ -26,7 +34,6 @@ export class FilterComponent implements OnInit {
       name: 'Usado'
     }
   ]
-  filters:Filter = new Filter()
   
   term:FormControl = new FormControl('')
   user:FormControl = new FormControl('')
@@ -36,11 +43,12 @@ export class FilterComponent implements OnInit {
   form:FormGroup
 
   constructor(
-    private httpServices:HttpService,
-    public filterService:FilterService
+    private filterService:FilterService,
+    private categoriesService:CategoriesService
   ) { }
 
   ngOnInit() {
+    
     this.form = new FormGroup({
       term: this.term,
       user: this.user,
@@ -48,16 +56,17 @@ export class FilterComponent implements OnInit {
       condition: this.condition
     })
 
-    this.filterService.filters$.subscribe(filters => {
-      this.filters = filters
-      this.term.setValue(filters.term)
-      this.user.setValue(filters.user)
-      this.category.setValue(filters.category)
-      this.condition.setValue(filters.condition)
+    let subs = this.categoriesService.getCategories().subscribe(categories => {
+        this.categories = categories.content
+        subs.unsubscribe()
     })
-    this.httpServices.getCategories().subscribe(categories => {
-      this.categories = categories
-    })
+
+    this.filter = this.filterService.getFilter
+    this.term.setValue(this.filter.term)
+    this.user.setValue(this.filter.user)
+    this.category.setValue(this.filter.category)
+    this.condition.setValue(this.filter.condition)
+
   }
 
   updateFilter():void {

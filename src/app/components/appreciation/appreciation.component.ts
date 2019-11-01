@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-appreciation',
@@ -8,16 +8,37 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 export class AppreciationComponent implements OnInit, OnChanges {
 
   stars:string[] = []
+  
   @Input() appreciation:number
 
   @Input() inline:boolean
 
+  @Input() small:boolean
+
+  @Input() edit:boolean
+
+  @Output() reviewValue = new EventEmitter<number>()
+
   constructor() {}
 
   ngOnInit() {
+    this.printStars(this.appreciation)  
+  }
+
+  ngOnChanges(): void {
+  }
+
+  selection(index:number):void {
+    if (this.edit) {
+      this.printStars(index)
+      this.reviewValue.emit(index)
+    }
+  }
+
+  printStars(cant:number) {
+    this.stars = []
     for(let i = 0; i < 5; i++ ) {
-      console.log(i < this.appreciation)
-      if (i < this.appreciation) {
+      if (i < cant) {
         this.stars.push('star')
       }
       else{
@@ -26,7 +47,5 @@ export class AppreciationComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnChanges(): void {
-  }
 
 }
